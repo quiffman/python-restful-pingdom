@@ -1,3 +1,20 @@
+pause_host_pingdom.py
+=====================
+
+Pauses all Pingdom checks for a given host (defaults to the running host).
+Lists all checks and for any with a hostname that resolves to something that
+matches the given hostname, either pause or unpause these checks.
+
+Potentially intended to be linked as an init script.
+
+Credentials can be read from an ini file at /etc/sysconfig/pingdom or ~/.pingdom:
+```
+[credentials]
+username=your.pingdom.email@address.com
+password=super_sekrit
+appkey=yourjumbl30fAPIk3ylEtt3Rs
+```
+
 Python Module for Pingdom REST API
 ==================================
 
