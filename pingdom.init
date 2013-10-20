@@ -1,0 +1,35 @@
+#!/bin/bash
+#
+# Startup script for pingdom checks
+#
+# chkconfig: 345 60 02
+# description: Pause and unpause the pingdom checks for this host
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# See how we were called.
+case "$1" in
+  start)
+  /bin/echo "Starting (Unpausing) pingdom checks..."
+  /usr/local/sbin/pause_host_pingdom.py start
+  touch /var/lock/subsys/pingdom
+  ;;
+  stop)
+  /bin/echo "Stopping (Pausing) pingdom checks..."
+  /usr/local/sbin/pause_host_pingdom.py stop
+  ;;
+  restart)
+  $0 stop
+  $0 start
+  ;;
+  status)
+  /usr/local/sbin/pause_host_pingdom.py status
+  ;;
+  *)
+  echo "Usage: $0 {start|stop|restart}"
+  exit 1
+esac
+
+exit 0
+
